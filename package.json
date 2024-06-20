@@ -1,0 +1,30 @@
+{
+  "name": "exam",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node --trace-warnings --watch-path=./src ./src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "migrate:list": "knex migrate:list --cwd=./src/domain/database",
+    "migrate:make": "knex --migrations-directory=\"./src/domain/database/migrations\" migrate:make",
+    "migrate:fresh": "npm run migrate:rollbackall && npm run migrate:migrateall",
+    "migrate:migrateall": "knex --cwd=./src/domain/database --migrations-directory=./migrations migrate:latest",
+    "migrate:dropall": "node src/domain/database/drop-all.js",
+    "migrate:rollbackall": "knex migrate:rollback --all --cwd=./src/domain/database --migrations-directory=./migrations",
+    "seed:make": "knex --cwd=./src/domain/database seed:make ",
+    "seed:run": "knex --cwd=./src/domain/database seed:run"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "knex": "^3.1.0",
+    "mysql2": "^3.10.1",
+    "objection": "^3.1.4"
+  }
+}
